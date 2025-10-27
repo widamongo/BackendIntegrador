@@ -19,6 +19,10 @@ public class Estudiante {
     private LocalDate fechaNacimiento;
 
     //Relacionandome con 1 Usuario
+    @OneToOne
+    @JoinColumn(name = "fk_usuario", referencedColumnName = "id")
+    @JsonManagedReference(value="relacionusuarioestudiante")
+    private Usuario usuario;
 
     public Estudiante() {
     }
@@ -51,5 +55,13 @@ public class Estudiante {
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

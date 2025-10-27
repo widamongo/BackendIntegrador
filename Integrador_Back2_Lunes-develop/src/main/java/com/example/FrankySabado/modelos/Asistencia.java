@@ -1,67 +1,87 @@
 package com.example.FrankySabado.modelos;
 
 import com.example.FrankySabado.ayudas.EstadosAsistencia;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
-@Table(name="asistencias")
+@Table(name = "asistencias")
 public class Asistencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "fecha", nullable = false, unique = false)
+
+    // Datos provenientes del formulario React
+    @Column(name = "estudiante_nombre", nullable = false)
+    private String estudianteNombre;
+
+    @Column(name = "grado", nullable = false)
+    private String grado;
+
+    @Column(name = "asignatura", nullable = false)
+    private String asignatura;
+
+    @Column(name = "fecha", nullable = false)
     private LocalDate fecha;
-    @Column(name = "observacion", nullable = true, unique = false, length = 100)
+
+    @Column(name = "hora", nullable = false)
+    private LocalTime hora;
+
+    @Column(name = "observacion", length = 500)
     private String observacion;
-    @Column(name = "estado", nullable = false, unique = false)
+
+    @Column(name = "estado", nullable = false)
     @Enumerated(EnumType.STRING)
     private EstadosAsistencia estado;
 
-   
+    // vínculo mínimo con el usuario que registra (puede ser id del usuario en la tabla users)
+    @Column(name = "usuario_id", nullable = false)
+    private Integer usuarioId;
 
-    public Asistencia() {
-    }
+    public Asistencia() {}
 
-    public Asistencia(Integer id, LocalDate fecha, String observacion, EstadosAsistencia estado) {
+    public Asistencia(Integer id, String estudianteNombre, String grado, String asignatura,
+                      LocalDate fecha, LocalTime hora, String observacion,
+                      EstadosAsistencia estado, Integer usuarioId) {
         this.id = id;
+        this.estudianteNombre = estudianteNombre;
+        this.grado = grado;
+        this.asignatura = asignatura;
         this.fecha = fecha;
+        this.hora = hora;
         this.observacion = observacion;
         this.estado = estado;
+        this.usuarioId = usuarioId;
     }
 
-    public Integer getId() {
-        return id;
-    }
+    // Getters y setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public String getEstudianteNombre() { return estudianteNombre; }
+    public void setEstudianteNombre(String estudianteNombre) { this.estudianteNombre = estudianteNombre; }
 
-    public LocalDate getFecha() {
-        return fecha;
-    }
+    public String getGrado() { return grado; }
+    public void setGrado(String grado) { this.grado = grado; }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
+    public String getAsignatura() { return asignatura; }
+    public void setAsignatura(String asignatura) { this.asignatura = asignatura; }
 
-    public String getObservacion() {
-        return observacion;
-    }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
 
-    public void setObservacion(String observacion) {
-        this.observacion = observacion;
-    }
+    public LocalTime getHora() { return hora; }
+    public void setHora(LocalTime hora) { this.hora = hora; }
 
-    public EstadosAsistencia getEstado() {
-        return estado;
-    }
+    public String getObservacion() { return observacion; }
+    public void setObservacion(String observacion) { this.observacion = observacion; }
 
-    public void setEstado(EstadosAsistencia estado) {
-        this.estado = estado;
-    }
+    public EstadosAsistencia getEstado() { return estado; }
+    public void setEstado(EstadosAsistencia estado) { this.estado = estado; }
+
+    public Integer getUsuarioId() { return usuarioId; }
+    public void setUsuarioId(Integer usuarioId) { this.usuarioId = usuarioId; }
 }

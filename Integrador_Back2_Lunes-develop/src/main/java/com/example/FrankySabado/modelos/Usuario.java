@@ -27,6 +27,9 @@ public class Usuario {
     private Estados estado;
 
     //RELACIONANDOME CON 1 ESTUDIANTE
+    @OneToOne(mappedBy = "usuario")
+    @JsonBackReference(value="relacionusuarioestudiante")
+    private Estudiante estudiante;
 
     public Usuario() {
 
@@ -87,5 +90,13 @@ public class Usuario {
 
     public void setEstado(Estados estado) {
         this.estado = estado;
+    }
+
+    public Estudiante getEstudiante() {
+        return estudiante;
+    }
+
+    public void setEstudiante(Estudiante estudiante) {
+        this.estudiante = estudiante;
     }
 }
