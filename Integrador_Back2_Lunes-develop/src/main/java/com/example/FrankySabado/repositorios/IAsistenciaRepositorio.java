@@ -24,10 +24,6 @@ public interface IAsistenciaRepositorio extends JpaRepository<Asistencia, Intege
     // Buscar asistencias por una lista de usuarios en una fecha (para filtrar por grupo)
     List<Asistencia> findByFechaAndUsuarioIdIn(LocalDate fecha, List<Integer> usuarioIds);
 
-    // Buscar asistencias por grupo y fecha (requiere que exista relación / campo grupoId en Asistencia
-    // o que se implemente con @Query si es necesario)
-    List<Asistencia> findByGrupoIdAndFecha(Long grupoId, LocalDate fecha);
-
     // Filtros adicionales alineados al formulario del frontend
     List<Asistencia> findByEstudianteNombreContainingIgnoreCase(String nombre);
     List<Asistencia> findByGrado(String grado);
