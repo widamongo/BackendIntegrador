@@ -13,6 +13,8 @@ public class Materia {
     private String nombre;
     @Column(name = "codigo")
     private Integer codigo;
-    
+    @ManyToOne
+    @JoinColumn(name="grupo_id")
+    private Grupo grupo;
 
 }

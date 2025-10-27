@@ -18,7 +18,7 @@ public class Grupo {
 
     //Relacion uno a muchos con materia
     @OneToMany (mappedBy = "grupo", cascade = CascadeType.ALL)
-    @JsonManagedReference
+
     private List<Materia> materias = new ArrayList<>();
 
 
